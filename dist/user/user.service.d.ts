@@ -1,9 +1,9 @@
-import { CreateUserDto } from "./dto/create-user.dto";
-import { UpdateUserDto } from "./dto/update-user.dto";
-import { User } from "./models/user.models";
-import { RolesService } from "../roles/roles.service";
-import { addRoleDto } from "./dto/add-tole.dto";
-import { ActivateUserDto } from "./dto/activity-user.dto";
+import { RolesService } from '../roles/roles.service';
+import { ActivateUserDto } from './dto/activity-user.dto';
+import { addRoleDto } from './dto/add-tole.dto';
+import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
+import { User } from './models/user.models';
 export declare class UserService {
     private readonly UserRepo;
     private readonly rolesService;

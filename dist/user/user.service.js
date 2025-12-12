@@ -14,9 +14,9 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserService = void 0;
 const common_1 = require("@nestjs/common");
-const user_models_1 = require("./models/user.models");
 const sequelize_1 = require("@nestjs/sequelize");
 const roles_service_1 = require("../roles/roles.service");
+const user_models_1 = require("./models/user.models");
 let UserService = class UserService {
     constructor(UserRepo, rolesService) {
         this.UserRepo = UserRepo;
@@ -24,11 +24,11 @@ let UserService = class UserService {
     }
     async createUser(createUserDto) {
         const newUser = await this.UserRepo.create(createUserDto);
-        const role = await this.rolesService.getAllRoleByValue("USER");
+        const role = await this.rolesService.getAllRoleByValue('USER');
         if (!role) {
-            throw new common_1.BadRequestException("Role not found");
+            throw new common_1.BadRequestException('Role not found');
         }
-        await newUser.$set("roles", [role.id]);
+        await newUser.$set('roles', [role.id]);
         await newUser.save();
         newUser.roles = [role];
         return newUser;
@@ -47,7 +47,7 @@ let UserService = class UserService {
             where: { id },
             returning: true,
         });
-        console.log("users ::  ", users[1][0]);
+        console.log('users ::  ', users[1][0]);
         return users[1][0];
     }
     async remove(id) {
@@ -57,25 +57,25 @@ let UserService = class UserService {
         const user = await this.UserRepo.findByPk(addRoleDto.userId);
         const role = await this.rolesService.getAllRoleByValue(addRoleDto.value);
         if (role && user) {
-            await user.$add("roles", role.id);
+            await user.$add('roles', role.id);
             const updateUser = await this.UserRepo.findByPk(addRoleDto.userId, {
                 include: { all: true },
             });
             return updateUser;
         }
-        throw new common_1.NotFoundException("Foydalanuvchi va role topilmadi ");
+        throw new common_1.NotFoundException('Foydalanuvchi va role topilmadi ');
     }
     async removeRole(addRoleDto) {
         const user = await this.UserRepo.findByPk(addRoleDto.userId);
         const role = await this.rolesService.getAllRoleByValue(addRoleDto.value);
         if (role && user) {
-            await user.$remove("roles", role.id);
+            await user.$remove('roles', role.id);
             const updateUser = await this.UserRepo.findByPk(addRoleDto.userId, {
                 include: { all: true },
             });
             return updateUser;
         }
-        throw new common_1.NotFoundException("Foydalanuvchi va role topilmadi ");
+        throw new common_1.NotFoundException('Foydalanuvchi va role topilmadi ');
     }
     async activateUser(activateUserDto) {
         const user = await this.UserRepo.findByPk(activateUserDto.userId);
@@ -84,7 +84,7 @@ let UserService = class UserService {
             await user.save();
             return user;
         }
-        throw new common_1.NotFoundException("Foydalanuchi topilmadi");
+        throw new common_1.NotFoundException('Foydalanuchi topilmadi');
     }
 };
 exports.UserService = UserService;

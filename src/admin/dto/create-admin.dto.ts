@@ -7,26 +7,26 @@ export class CreateAdminDto {
   @IsString()
   name: string;
 
-  @ApiProperty({ example: "login example", description: "login description" })
-  @IsNotEmpty()
-  @IsString()
-  login: string;
+    @ApiProperty({ example: "login example", description: "login description" })
+    @IsNotEmpty()
+    @IsString()
+    login: string;
 
-  @ApiProperty({
-    example: "password example",
-    description: "password description",
-  })
-  @IsNotEmpty()
-  @IsString()
-  password: string;
+    @ApiProperty({
+      example: "password example",
+      description: "password description",
+    })
+    @IsNotEmpty()
+    @IsString()
+    password: string;
 
-  @ApiProperty({
-    example: "is_activate example",
-    description: "is_activate description",
-  })
+    @ApiProperty({
+      example: "is_activate example",
+      description: "is_activate description",
+    })
   // @IsNotEmpty()
   // @IsBoolean()
-  is_active: boolean;
+    is_active: boolean;
 
   @ApiProperty({
     example: "is_creator example",
