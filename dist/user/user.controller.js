@@ -14,17 +14,17 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
 const common_1 = require("@nestjs/common");
-const user_service_1 = require("./user.service");
+const swagger_1 = require("@nestjs/swagger");
+const roles_auth_decorator_1 = require("../decorators/roles-auth.decorator");
+const jwt_auth_guard_1 = require("../guards/jwt-auth.guard");
+const roles_guard_1 = require("../guards/roles.guard");
+const self_guard_1 = require("../guards/self.guard");
+const activity_user_dto_1 = require("./dto/activity-user.dto");
+const add_tole_dto_1 = require("./dto/add-tole.dto");
 const create_user_dto_1 = require("./dto/create-user.dto");
 const update_user_dto_1 = require("./dto/update-user.dto");
-const add_tole_dto_1 = require("./dto/add-tole.dto");
-const activity_user_dto_1 = require("./dto/activity-user.dto");
-const swagger_1 = require("@nestjs/swagger");
 const user_models_1 = require("./models/user.models");
-const jwt_auth_guard_1 = require("../guards/jwt-auth.guard");
-const self_guard_1 = require("../guards/self.guard");
-const roles_auth_decorator_1 = require("../decorators/roles-auth.decorator");
-const roles_guard_1 = require("../guards/roles.guard");
+const user_service_1 = require("./user.service");
 let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
@@ -56,7 +56,7 @@ let UserController = class UserController {
 };
 exports.UserController = UserController;
 __decorate([
-    (0, swagger_1.ApiOperation)({ summary: "Foydalanuchilarni yaratish 12222222222222" }),
+    (0, swagger_1.ApiOperation)({ summary: 'Foydalanuchilarni yaratish ' }),
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -64,10 +64,10 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "create", null);
 __decorate([
-    (0, swagger_1.ApiOperation)({ summary: "Foydalanuchilarni  hammasini korish" }),
+    (0, swagger_1.ApiOperation)({ summary: 'Foydalanuchilarni  hammasini korish' }),
     (0, swagger_1.ApiResponse)({
         status: 200,
-        description: "List of Users",
+        description: 'List of Users',
         type: [user_models_1.User],
     }),
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
@@ -77,42 +77,42 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "findAll", null);
 __decorate([
-    (0, swagger_1.ApiOperation)({ summary: "Foydalanuchilarni id boyicha  korish" }),
+    (0, swagger_1.ApiOperation)({ summary: 'Foydalanuchilarni id boyicha  korish' }),
     (0, swagger_1.ApiResponse)({
         status: 200,
-        description: "Get userById",
+        description: 'Get userById',
         type: user_models_1.User,
     }),
     (0, common_1.UseGuards)(self_guard_1.SelfGuard),
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
-    (0, common_1.Get)(":id"),
-    __param(0, (0, common_1.Param)("id")),
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "findOne", null);
 __decorate([
-    (0, swagger_1.ApiOperation)({ summary: "Foydalanuchilarni edit qilish" }),
-    (0, common_1.Patch)(":id"),
-    __param(0, (0, common_1.Param)("id")),
+    (0, swagger_1.ApiOperation)({ summary: 'Foydalanuchilarni edit qilish' }),
+    (0, common_1.Patch)(':id'),
+    __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, update_user_dto_1.UpdateUserDto]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "update", null);
 __decorate([
-    (0, swagger_1.ApiOperation)({ summary: "Foydalanuchilarni edit qilish" }),
-    (0, common_1.Delete)(":id"),
-    __param(0, (0, common_1.Param)("id")),
+    (0, swagger_1.ApiOperation)({ summary: 'Foydalanuchilarni edit qilish' }),
+    (0, common_1.Delete)(':id'),
+    __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "remove", null);
 __decorate([
     (0, common_1.HttpCode)(200),
-    (0, roles_auth_decorator_1.Roles)("ADMIN", "USER"),
+    (0, roles_auth_decorator_1.Roles)('ADMIN', 'USER'),
     (0, common_1.UseGuards)(roles_guard_1.RolesGuard),
-    (0, common_1.Post)("add_role"),
+    (0, common_1.Post)('add_role'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [add_tole_dto_1.addRoleDto]),
@@ -120,7 +120,7 @@ __decorate([
 ], UserController.prototype, "addRole", null);
 __decorate([
     (0, common_1.HttpCode)(200),
-    (0, common_1.Post)("remove_role"),
+    (0, common_1.Post)('remove_role'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [add_tole_dto_1.addRoleDto]),
@@ -128,15 +128,15 @@ __decorate([
 ], UserController.prototype, "removeRole", null);
 __decorate([
     (0, common_1.HttpCode)(200),
-    (0, common_1.Post)("activate"),
+    (0, common_1.Post)('activate'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [activity_user_dto_1.ActivateUserDto]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "activateUser", null);
 exports.UserController = UserController = __decorate([
-    (0, swagger_1.ApiTags)("Foydalanuvchilar"),
-    (0, common_1.Controller)("user"),
+    (0, swagger_1.ApiTags)('Foydalanuvchilar'),
+    (0, common_1.Controller)('user'),
     __metadata("design:paramtypes", [user_service_1.UserService])
 ], UserController);
 //# sourceMappingURL=user.controller.js.map

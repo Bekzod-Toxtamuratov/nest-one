@@ -1,9 +1,9 @@
-import { UserService } from "./user.service";
-import { CreateUserDto } from "./dto/create-user.dto";
-import { UpdateUserDto } from "./dto/update-user.dto";
-import { addRoleDto } from "./dto/add-tole.dto";
-import { ActivateUserDto } from "./dto/activity-user.dto";
-import { User } from "./models/user.models";
+import { ActivateUserDto } from './dto/activity-user.dto';
+import { addRoleDto } from './dto/add-tole.dto';
+import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
+import { User } from './models/user.models';
+import { UserService } from './user.service';
 export declare class UserController {
     private readonly userService;
     constructor(userService: UserService);
