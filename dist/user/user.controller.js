@@ -15,9 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
 const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
-const roles_auth_decorator_1 = require("../decorators/roles-auth.decorator");
 const jwt_auth_guard_1 = require("../guards/jwt-auth.guard");
-const roles_guard_1 = require("../guards/roles.guard");
 const self_guard_1 = require("../guards/self.guard");
 const activity_user_dto_1 = require("./dto/activity-user.dto");
 const add_tole_dto_1 = require("./dto/add-tole.dto");
@@ -45,6 +43,7 @@ let UserController = class UserController {
         return this.userService.remove(id);
     }
     addRole(addRoleDto) {
+        console.log('addRole', addRoleDto);
         return this.userService.addRole(addRoleDto);
     }
     async removeRole(addRoleDto) {
@@ -110,8 +109,6 @@ __decorate([
 ], UserController.prototype, "remove", null);
 __decorate([
     (0, common_1.HttpCode)(200),
-    (0, roles_auth_decorator_1.Roles)('ADMIN', 'USER'),
-    (0, common_1.UseGuards)(roles_guard_1.RolesGuard),
     (0, common_1.Post)('add_role'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),

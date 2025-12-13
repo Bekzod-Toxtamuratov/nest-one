@@ -10,9 +10,7 @@ import {
 	UseGuards,
 } from '@nestjs/common'
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
-import { Roles } from '../decorators/roles-auth.decorator'
 import { JwtAuthGuard } from '../guards/jwt-auth.guard'
-import { RolesGuard } from '../guards/roles.guard'
 import { SelfGuard } from '../guards/self.guard'
 import { ActivateUserDto } from './dto/activity-user.dto'
 import { addRoleDto } from './dto/add-tole.dto'
@@ -72,10 +70,11 @@ export class UserController {
 
 	// ************** addrole qoyildu bu narsa;
 	@HttpCode(200)
-	@Roles('ADMIN', 'USER')
-	@UseGuards(RolesGuard)
+	// @Roles('ADMIN', 'USER')
+	// @UseGuards(RolesGuard)
 	@Post('add_role')
 	addRole(@Body() addRoleDto: addRoleDto) {
+		console.log('addRole', addRoleDto);
 		return this.userService.addRole(addRoleDto)
 	}
 
