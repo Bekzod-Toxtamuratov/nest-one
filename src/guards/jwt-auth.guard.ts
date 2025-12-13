@@ -15,7 +15,7 @@ export class JwtAuthGuard implements CanActivate {
     context: ExecutionContext
   ): boolean | Promise<boolean> | Observable<boolean> {
     const req = context.switchToHttp().getRequest();
-    console.log("req", req);
+    // console.log("req", req);
 
     const authHeader = req.headers.authorization;
 
@@ -43,7 +43,7 @@ export class JwtAuthGuard implements CanActivate {
       });
     }
     req.user = user;
-    console.log("req", req);
+    // console.log("req", req);
 
     return true;
   }

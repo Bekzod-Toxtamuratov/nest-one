@@ -27,7 +27,7 @@ export class DriverService {
     id: number,
     updateDriverDto: UpdateDriverDto
   ): Promise<Driver | string> {
-    console.log("ok");
+    // console.log("ok");
 
     console.log(updateDriverDto, "updateDriverDto");
     const data = await this.driverRepo.update(updateDriverDto, {
@@ -35,7 +35,7 @@ export class DriverService {
       returning: true,
     });
 
-    console.log(data);
+    // console.log(data);
     
     return "dad";
   }

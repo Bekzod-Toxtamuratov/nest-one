@@ -18,7 +18,6 @@ let JwtAuthGuard = class JwtAuthGuard {
     }
     canActivate(context) {
         const req = context.switchToHttp().getRequest();
-        console.log("req", req);
         const authHeader = req.headers.authorization;
         if (!authHeader) {
             throw new common_1.UnauthorizedException({
@@ -42,7 +41,6 @@ let JwtAuthGuard = class JwtAuthGuard {
             });
         }
         req.user = user;
-        console.log("req", req);
         return true;
     }
 };

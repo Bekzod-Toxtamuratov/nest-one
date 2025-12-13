@@ -22,7 +22,6 @@ let MachineController = class MachineController {
         this.machineService = machineService;
     }
     async createMachine(createMachineDto) {
-        console.log(createMachineDto);
         return this.machineService.createMachine(createMachineDto);
     }
     async getAllMachinies() {

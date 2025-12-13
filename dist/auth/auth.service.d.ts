@@ -1,9 +1,9 @@
-import { UserService } from "../user/user.service";
-import { CreateUserDto } from "../user/dto/create-user.dto";
-import { JwtService } from "@nestjs/jwt";
-import { LoginDto } from "./dto/login.dto";
-import { CreateAdminDto } from "../admin/dto/create-admin.dto";
-import { AdminService } from "../admin/admin.service";
+import { JwtService } from '@nestjs/jwt';
+import { AdminService } from '../admin/admin.service';
+import { CreateAdminDto } from '../admin/dto/create-admin.dto';
+import { CreateUserDto } from '../user/dto/create-user.dto';
+import { UserService } from '../user/user.service';
+import { LoginDto } from './dto/login.dto';
 export declare class AuthService {
     private readonly userService;
     private readonly jwtService;

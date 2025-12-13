@@ -12,7 +12,7 @@ export class MachineController {
   async createMachine(
     @Body() createMachineDto: CreateMachineDto
   ): Promise<Machine> {
-    console.log(createMachineDto);
+    // console.log(createMachineDto);
     return this.machineService.createMachine(createMachineDto);
   }
   @Get()

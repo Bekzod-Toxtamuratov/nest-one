@@ -30,13 +30,11 @@ let DriverService = class DriverService {
         return await this.driverRepo.findOne({ where: { id } });
     }
     async updateDriverById(id, updateDriverDto) {
-        console.log("ok");
         console.log(updateDriverDto, "updateDriverDto");
         const data = await this.driverRepo.update(updateDriverDto, {
             where: { id: id },
             returning: true,
         });
-        console.log(data);
         return "dad";
     }
     async deleteDriverById(id) {

@@ -21,7 +21,6 @@ let RolesGuard = class RolesGuard {
     }
     canActivate(context) {
         const req = context.switchToHttp().getRequest();
-        console.log("req", req);
         const requiredRoles = this.reflector.getAllAndOverride(roles_auth_decorator_1.ROLES_KEY, [context.getHandler(), context.getClass()]);
         if (!requiredRoles) {
             return true;

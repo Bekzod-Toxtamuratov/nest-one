@@ -30,7 +30,7 @@ export class BuilderService {
       where: { id },
       returning: true,
     });
-    console.log(builder[1]);
+    // console.log(builder[1]);
 
     return builder[1][0];
   }

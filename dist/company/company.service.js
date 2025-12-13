@@ -40,7 +40,6 @@ let CompanyService = class CompanyService {
             where: { id },
             returning: true,
         });
-        console.log(company[1]);
         return company[1][0];
     }
 };

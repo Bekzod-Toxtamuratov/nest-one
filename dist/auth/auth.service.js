@@ -11,10 +11,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthService = void 0;
 const common_1 = require("@nestjs/common");
-const user_service_1 = require("../user/user.service");
-const byscypt = require("bcrypt");
 const jwt_1 = require("@nestjs/jwt");
+const byscypt = require("bcrypt");
 const admin_service_1 = require("../admin/admin.service");
+const user_service_1 = require("../user/user.service");
 let AuthService = class AuthService {
     constructor(userService, jwtService, adminService) {
         this.userService = userService;
@@ -23,9 +23,8 @@ let AuthService = class AuthService {
     }
     async UsersignUp(createUserDto) {
         const condiate = await this.userService.getUserByEmail(createUserDto.email);
-        console.log("condiate", condiate);
         if (condiate) {
-            throw new common_1.HttpException("Bunday foydalanuvchi mavjud", common_1.HttpStatus.BAD_REQUEST);
+            throw new common_1.HttpException('Bunday foydalanuvchi mavjud', common_1.HttpStatus.BAD_REQUEST);
         }
         const hashedPassword = await byscypt.hash(createUserDto.password, 7);
         createUserDto.password = hashedPassword;
@@ -35,12 +34,11 @@ let AuthService = class AuthService {
     async AdminsignUp(createAdminDto) {
         const admin = await this.adminService.getADminByEmail(createAdminDto.email);
         if (admin) {
-            throw new common_1.HttpException("Bunday admin mavjud", common_1.HttpStatus.BAD_REQUEST);
+            throw new common_1.HttpException('Bunday admin mavjud', common_1.HttpStatus.BAD_REQUEST);
         }
         const hashedPassword = await byscypt.hash(createAdminDto.password, 7);
         createAdminDto.password = hashedPassword;
         const newAdmin = await this.adminService.create(createAdminDto);
-        console.log("newAdmin", newAdmin);
         const data = await this.AdmingenerateToken(newAdmin);
         newAdmin.hashed_refresh_token = data.token;
         newAdmin.save();
@@ -62,26 +60,24 @@ let AuthService = class AuthService {
     async Userlogin(loginDto) {
         const user = await this.userService.getUserByEmail(loginDto.email);
         if (!user) {
-            throw new common_1.UnauthorizedException("email yoki password notogri ");
+            throw new common_1.UnauthorizedException('email yoki password notogri ');
         }
         const validPassword = await byscypt.compare(loginDto.password, user.password);
         if (!validPassword) {
-            throw new common_1.UnauthorizedException("email yoki password notogri ");
+            throw new common_1.UnauthorizedException('email yoki password notogri ');
         }
         return this.UsergenerateToken(user);
     }
     async AdminLogin(loginDto) {
         const admin = await this.adminService.getADminByEmail(loginDto.email);
-        console.log("admin", admin);
         if (!admin) {
-            console.log("!admin if ishladi ");
-            throw new common_1.UnauthorizedException("email yoki password notogri ");
+            throw new common_1.UnauthorizedException('email yoki password notogri ');
         }
         const validPassword = await byscypt.compare(loginDto.password, admin.password);
         if (!validPassword) {
-            console.log(loginDto.password, "   ", admin.password);
-            console.log("!validPassword if ishladi ");
-            throw new common_1.UnauthorizedException("email yoki password notogri ");
+            ;
+            ('!validPassword if ishladi ');
+            throw new common_1.UnauthorizedException('email yoki password notogri ');
         }
         return this.AdmingenerateToken(admin);
     }

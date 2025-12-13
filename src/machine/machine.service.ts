@@ -35,7 +35,7 @@ export class MachineService {
       where: { id },
       returning: true,
     });
-    console.log("machine ::  ", machine[1][0]);
+    // console.log("machine ::  ", machine[1][0]);
     return machine[1][0];
   }
 }
