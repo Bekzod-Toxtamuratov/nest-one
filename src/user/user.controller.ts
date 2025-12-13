@@ -10,11 +10,13 @@ import {
 	UseGuards,
 } from '@nestjs/common'
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
+import { Roles } from '../decorators/roles-auth.decorator'
 import { JwtAuthGuard } from '../guards/jwt-auth.guard'
 import { SelfGuard } from '../guards/self.guard'
 import { ActivateUserDto } from './dto/activity-user.dto'
-import { addRoleDto } from './dto/add-tole.dto'
+import { addRoleDto } from './dto/add-role.dto'
 import { CreateUserDto } from './dto/create-user.dto'
+import { RemoveRoleDto } from './dto/remove-role.dto'
 import { UpdateUserDto } from './dto/update-user.dto'
 import { User } from './models/user.models'
 import { UserService } from './user.service'
@@ -74,15 +76,15 @@ export class UserController {
 	// @UseGuards(RolesGuard)
 	@Post('add_role')
 	addRole(@Body() addRoleDto: addRoleDto) {
-		console.log('addRole', addRoleDto);
+		// console.log('addRole', addRoleDto)
 		return this.userService.addRole(addRoleDto)
 	}
 
 	@HttpCode(200)
-	// @Roles("ADMIN")
+	@Roles('ADMIN')
 	@Post('remove_role')
-	async removeRole(@Body() addRoleDto: addRoleDto) {
-		return this.userService.removeRole(addRoleDto)
+	async removeRole(@Body() removeRoleDto: RemoveRoleDto) {
+		return this.userService.removeRole(removeRoleDto)
 	}
 
 	@HttpCode(200)

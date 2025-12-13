@@ -15,11 +15,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
 const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
+const roles_auth_decorator_1 = require("../decorators/roles-auth.decorator");
 const jwt_auth_guard_1 = require("../guards/jwt-auth.guard");
 const self_guard_1 = require("../guards/self.guard");
 const activity_user_dto_1 = require("./dto/activity-user.dto");
-const add_tole_dto_1 = require("./dto/add-tole.dto");
+const add_role_dto_1 = require("./dto/add-role.dto");
 const create_user_dto_1 = require("./dto/create-user.dto");
+const remove_role_dto_1 = require("./dto/remove-role.dto");
 const update_user_dto_1 = require("./dto/update-user.dto");
 const user_models_1 = require("./models/user.models");
 const user_service_1 = require("./user.service");
@@ -43,11 +45,10 @@ let UserController = class UserController {
         return this.userService.remove(id);
     }
     addRole(addRoleDto) {
-        console.log('addRole', addRoleDto);
         return this.userService.addRole(addRoleDto);
     }
-    async removeRole(addRoleDto) {
-        return this.userService.removeRole(addRoleDto);
+    async removeRole(removeRoleDto) {
+        return this.userService.removeRole(removeRoleDto);
     }
     async activateUser(activateUserDto) {
         return this.userService.activateUser(activateUserDto);
@@ -112,15 +113,16 @@ __decorate([
     (0, common_1.Post)('add_role'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [add_tole_dto_1.addRoleDto]),
+    __metadata("design:paramtypes", [add_role_dto_1.addRoleDto]),
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "addRole", null);
 __decorate([
     (0, common_1.HttpCode)(200),
+    (0, roles_auth_decorator_1.Roles)('ADMIN'),
     (0, common_1.Post)('remove_role'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [add_tole_dto_1.addRoleDto]),
+    __metadata("design:paramtypes", [remove_role_dto_1.RemoveRoleDto]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "removeRole", null);
 __decorate([
