@@ -10,7 +10,6 @@ import { addRoleDto } from './dto/add-tole.dto'
 import { CreateUserDto } from './dto/create-user.dto'
 import { UpdateUserDto } from './dto/update-user.dto'
 import { User } from './models/user.models'
-
 @Injectable()
 export class UserService {
 	constructor(
